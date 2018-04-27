@@ -28,7 +28,9 @@ export function createPost(post, history) {
   // ActionCreator returns a function
   // that gets called by the middleware passing in dispatch to it as an argument
   return (dispatch) => {
-    const fields = { title: post.title, contents: post.content, tags: post.tags };
+    const fields = {
+      title: post.title, content: post.content, tags: post.tags, cover_url: post.cover_url,
+    };
     axios.post(`${ROOT_URL}/posts${API_KEY}`, fields).then((response) => {
       history.push('/');
     }).catch((error) => {
@@ -41,7 +43,9 @@ export function updatePost(post) {
   // ActionCreator returns a function
   // that gets called by the middleware passing in dispatch to it as an argument
   return (dispatch) => {
-    const fields = { title: post.title, contents: post.content, tags: post.tags };
+    const fields = {
+      title: post.title, content: post.content, tags: post.tags, cover_url: post.cover_url,
+    };
     axios.put(`${ROOT_URL}/posts${API_KEY}`, fields).then((response) => {
       dispatch({ type: ActionTypes.FETCH_POST, payload: response.data });
     }).catch((error) => {

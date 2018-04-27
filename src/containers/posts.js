@@ -2,18 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import * as actions from '../actions';
+import { fetchPosts } from '../actions';
 
 class Posts extends Component {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
-    this.props.actions.fetchPosts();
+    this.props.fetchPosts();
   }
   render() {
     return (
-      <div>Here are all my posts: {this.props.allPosts}</div>
+      <div>
+        {this.props.allPosts.map(post => (
+          <div className="card">
+            <img src={post.cover_url} alt="pic" />
+            <div key={post.id}>{post.title}</div>
+          </div>
+        ))}
+      </div>
     );
   }
 }
@@ -26,4 +33,4 @@ const mapStateToProps = state => (
 
 // react-redux glue -- outputs Container that knows how to call actions
 // new way to connect with react router 4
-export default withRouter(connect(mapStateToProps, actions)(Posts));
+export default withRouter(connect(mapStateToProps, { fetchPosts })(Posts));

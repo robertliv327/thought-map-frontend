@@ -1,7 +1,45 @@
+$buttoncolor: #7DCEA0;
+$hovercolor: #52BE80;
+
 body, html {
   font-family: "Roboto", sans-serif;
   height: 100%;
 }
 .active {
   color: pink;
+}
+#input-area {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.input {
+  font-size: 14px;
+  padding: 7px;
+  color: black;
+  margin-bottom: 10px;
+  border: 1px solid palevioletred;
+  border-radius: 3px;
+}
+.textarea {
+  min-height: 100px;
+  margin-bottom: 10px;
+  resize: none;
+}
+.button {
+  border: 1px solid palevioletred;
+  border-radius: 3px;
+  font-size: 14px;
+  padding: 7px;
+  color: black;
+  border-color: $buttoncolor;
+  background-color: $buttoncolor;
+  width: 70px;
+  // width: 100px;
+}
+.button:hover {
+  background-color: $hovercolor;
+  border-color: $hovercolor;
+  cursor: pointer;
 }
