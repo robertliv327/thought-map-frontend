@@ -28,9 +28,9 @@ export function createPost(post, history) {
   // ActionCreator returns a function
   // that gets called by the middleware passing in dispatch to it as an argument
   return (dispatch) => {
-    const fields = { title: '', contents: '', tags: '' };
+    const fields = { title: post.title, contents: post.content, tags: post.tags };
     axios.post(`${ROOT_URL}/posts${API_KEY}`, fields).then((response) => {
-      dispatch({ type: ActionTypes.FETCH_POSTS, payload: response.data });
+      history.push('/');
     }).catch((error) => {
       // hit an error do something else!
     });
@@ -41,9 +41,9 @@ export function updatePost(post) {
   // ActionCreator returns a function
   // that gets called by the middleware passing in dispatch to it as an argument
   return (dispatch) => {
-    const fields = { title: '', contents: '', tags: '' };
+    const fields = { title: post.title, contents: post.content, tags: post.tags };
     axios.put(`${ROOT_URL}/posts${API_KEY}`, fields).then((response) => {
-      dispatch({ type: ActionTypes.FETCH_POSTS, payload: response.data });
+      dispatch({ type: ActionTypes.FETCH_POST, payload: response.data });
     }).catch((error) => {
       // hit an error do something else!
     });
@@ -51,9 +51,25 @@ export function updatePost(post) {
 }
 
 export function fetchPost(id) {
-  /* axios get */
+  // ActionCreator returns a function
+  // that gets called by the middleware passing in dispatch to it as an argument
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`).then((response) => {
+      dispatch({ type: ActionTypes.FETCH_POST, payload: response.data });
+    }).catch((error) => {
+      // hit an error do something else!
+    });
+  };
 }
 
 export function deletePost(id, history) {
-  /* axios delete */
+  // ActionCreator returns a function
+  // that gets called by the middleware passing in dispatch to it as an argument
+  return (dispatch) => {
+    axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`).then((response) => {
+      history.push('/');
+    }).catch((error) => {
+      // hit an error do something else!
+    });
+  };
 }

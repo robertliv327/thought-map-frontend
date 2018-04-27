@@ -1,3 +1,6 @@
+// add ids into urls
+// try to get posts appearing...
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';

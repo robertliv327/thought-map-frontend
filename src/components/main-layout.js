@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
+import Posts from '../containers/posts';
+import Post from '../containers/post';
+import NewPost from '../containers/new-post';
 
 const Nav = (props) => {
   return (
