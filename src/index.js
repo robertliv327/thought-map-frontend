@@ -1,5 +1,6 @@
-// add ids into urls
-// try to get posts appearing...
+// TODO:
+// get posts appearing on their own
+// be able to edit and delete posts
 
 import React from 'react';
 import ReactDOM from 'react-dom';

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { fetchPosts } from '../actions';
+import Pin from '../components/pin';
 
 class Posts extends Component {
   constructor(props) {
@@ -13,12 +14,9 @@ class Posts extends Component {
   }
   render() {
     return (
-      <div>
+      <div id="map">
         {this.props.allPosts.map(post => (
-          <div className="card">
-            <img src={post.cover_url} alt="pic" />
-            <div key={post.id}>{post.title}</div>
-          </div>
+          <Pin key={post.id} post={post} />
         ))}
       </div>
     );

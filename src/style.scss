@@ -1,12 +1,57 @@
-$buttoncolor: #7DCEA0;
-$hovercolor: #52BE80;
+$buttoncolor: #86cee1;
+$hovercolor: #009fc4;
 
 body, html {
   font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
   height: 100%;
 }
+// #nav {
+//   padding: 30px;
+//   padding-top: 20px;
+// }
+.navlinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  justify-content: space-around;
+  padding-left: 0px;
+  min-height: 120px;
+}
+.navlink {
+  text-decoration: none;
+  color: black;
+  margin-top: 20px;
+}
+.title {
+  font-family: 'Do Hyeon', sans-serif;
+  font-size: 50px;
+}
 .active {
-  color: pink;
+  // font-weight: bold;
+}
+#map {
+  background-image: url(./img/map.png);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 720px;
+  overflow: hidden;
+}
+.pin {
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+  min-width: 150px;
+  max-width: 500px;
+  word-break: break-all;
+  word-wrap: break-word;
+  position: absolute;
+  padding: 15px;
+  box-shadow: 1px 1px 5px #999;
 }
 #input-area {
   display: flex;
@@ -35,8 +80,7 @@ body, html {
   color: black;
   border-color: $buttoncolor;
   background-color: $buttoncolor;
-  width: 70px;
-  // width: 100px;
+  min-width: 70px;
 }
 .button:hover {
   background-color: $hovercolor;

@@ -6,10 +6,14 @@ import NewPost from '../containers/new-post';
 
 const Nav = (props) => {
   return (
-    <nav>
-      <ul>
-        <li><NavLink exact to="/">My Super Awesome Blog</NavLink></li>
-        <li><NavLink to="/posts/new">new post</NavLink></li>
+    <nav id="nav">
+      <ul className="navlinks">
+        <li><NavLink exact to="/" className="navlink title">Thought Map</NavLink></li>
+        <li>
+          <NavLink to="/posts/new" className="navlink">
+            <button className="button" type="button" name="button">Add a Pin</button>
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

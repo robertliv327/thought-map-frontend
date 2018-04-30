@@ -32,7 +32,6 @@ class NewPost extends Component {
   onCoverURLChange(event) {
     this.setState({ requestedCoverURL: event.target.value });
   }
-  // on "Create Note" click, use callback from props to create new note in parent
   onSubmit(event) {
     const post = {
       title: this.state.requestedTitle,

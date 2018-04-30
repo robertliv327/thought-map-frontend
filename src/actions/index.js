@@ -19,7 +19,7 @@ export function fetchPosts() {
     axios.get(`${ROOT_URL}/posts${API_KEY}`).then((response) => {
       dispatch({ type: ActionTypes.FETCH_POSTS, payload: response.data });
     }).catch((error) => {
-      // hit an error do something else!
+      console.log('Error with axios call in fetchPosts()');
     });
   };
 }
@@ -34,22 +34,22 @@ export function createPost(post, history) {
     axios.post(`${ROOT_URL}/posts${API_KEY}`, fields).then((response) => {
       history.push('/');
     }).catch((error) => {
-      // hit an error do something else!
+      console.log('Error with axios call in createPost()');
     });
   };
 }
 
-export function updatePost(post) {
+export function updatePost(id, post) {
   // ActionCreator returns a function
   // that gets called by the middleware passing in dispatch to it as an argument
   return (dispatch) => {
     const fields = {
       title: post.title, content: post.content, tags: post.tags, cover_url: post.cover_url,
     };
-    axios.put(`${ROOT_URL}/posts${API_KEY}`, fields).then((response) => {
+    axios.put(`${ROOT_URL}/posts/${id}${API_KEY}`, fields).then((response) => {
       dispatch({ type: ActionTypes.FETCH_POST, payload: response.data });
     }).catch((error) => {
-      // hit an error do something else!
+      console.log('Error with axios call in updatePost()');
     });
   };
 }
@@ -61,7 +61,7 @@ export function fetchPost(id) {
     axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`).then((response) => {
       dispatch({ type: ActionTypes.FETCH_POST, payload: response.data });
     }).catch((error) => {
-      // hit an error do something else!
+      console.log('Error with axios call in fetchPost()');
     });
   };
 }
@@ -73,7 +73,7 @@ export function deletePost(id, history) {
     axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`).then((response) => {
       history.push('/');
     }).catch((error) => {
-      // hit an error do something else!
+      console.log('Error with axios call in deletePost()');
     });
   };
 }
