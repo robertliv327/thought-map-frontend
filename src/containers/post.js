@@ -45,10 +45,6 @@ class Post extends Component {
     };
     this.setState({
       isEditing: false,
-      editingTitle: '',
-      editingContent: '',
-      editingTags: '',
-      editingCoverURL: '',
     });
     this.props.updatePost(this.props.match.params.postID, post);
   }
@@ -67,33 +63,32 @@ class Post extends Component {
   onCoverURLChange(event) {
     this.setState({ editingCoverURL: event.target.value });
   }
-  renderNote() {
+  renderPost() {
     if (this.state.isEditing) {
-      // render note in editing mode... with textarea and input fields in place of title and text
       return (
-        <div className="post-page">
-          <div className="post-content">
-            <input className="input" placeholder="Edit Cover URL" onChange={this.onCoverURLChange} value={this.state.editingCoverURL} />
-            <input className="input" placeholder="Edit Title" onChange={this.onTitleChange} value={this.state.editingTitle} />
-            <Textarea className="input textarea" placeholder="Edit Content" onChange={this.onContentChange} value={this.state.editingContent} />
-            <input className="input" placeholder="Edit Tags" onChange={this.onTagsChange} value={this.state.editingTags} />
+        <div id="input-area">
+          <h3>Editing Post</h3>
+          <input className="input" placeholder="Edit Title" onChange={this.onTitleChange} value={this.state.editingTitle} />
+          <input className="input" placeholder="Edit Image URL" onChange={this.onCoverURLChange} value={this.state.editingCoverURL} />
+          <Textarea className="input textarea" placeholder="Edit Content" onChange={this.onContentChange} value={this.state.editingContent} />
+          <input className="input" placeholder="Edit Tags" onChange={this.onTagsChange} value={this.state.editingTags} />
+          <div>
+            <button className="button" type="button" name="button" onClick={this.onSaveClick}>Save Post</button>
+            <button className="button margin-left" type="button" name="button" onClick={this.onDeleteClick}>Delete Post</button>
           </div>
-          <button className="button" type="button" name="button" onClick={this.onDeleteClick}>Delete Post</button>
-          <button className="button" type="button" name="button" onClick={this.onSaveClick}>Save Post</button>
         </div>
       );
     } else {
-      // render note as normal
       return (
-        <div className="post-page">
-          <div className="post-content">
-            <img src={this.props.post.cover_url} alt="Cover URL" />
-            <div>{this.props.post.title}</div>
-            <div dangerouslySetInnerHTML={{ __html: marked(this.props.post.content || '') }} />
-            <div>{this.props.post.tags}</div>
+        <div id="post-page">
+          <p id="post-title">{this.props.post.title}</p>
+          <img src={this.props.post.cover_url} alt="Cover URL" />
+          <div dangerouslySetInnerHTML={{ __html: marked(this.props.post.content || '') }} />
+          <div id="tags">{this.props.post.tags}</div>
+          <div className="bottom-buttons">
+            <button className="button" type="button" name="button" onClick={this.onEditClick}>Edit Post</button>
+            <button className="button margin-left" type="button" name="button" onClick={this.onDeleteClick}>Delete Post</button>
           </div>
-          <button className="button" type="button" name="button" onClick={this.onDeleteClick}>Delete Post</button>
-          <button className="button" type="button" name="button" onClick={this.onEditClick}>Edit Post</button>
         </div>
       );
     }
@@ -101,7 +96,7 @@ class Post extends Component {
   render() {
     return (
       <div>
-        {this.renderNote()}
+        {this.renderPost()}
       </div>
     );
   }

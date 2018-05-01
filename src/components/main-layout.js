@@ -8,13 +8,14 @@ const Nav = (props) => {
   return (
     <nav id="nav">
       <ul className="navlinks">
-        <li><NavLink exact to="/" className="navlink title">Thought Map</NavLink></li>
+        <li><NavLink exact to="/" className="navlink title">Photo Blog</NavLink></li>
         <li>
           <NavLink to="/posts/new" className="navlink">
-            <button className="button" type="button" name="button">Add a Pin</button>
+            <button className="button" type="button" name="button">Add an Image</button>
           </NavLink>
         </li>
       </ul>
+      <hr className="divider" />
     </nav>
   );
 };

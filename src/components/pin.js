@@ -1,36 +1,48 @@
 import React, { Component } from 'react';
-import Draggable from 'react-draggable';
 import { NavLink } from 'react-router-dom';
 
 class Pin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      x: this.props.x,
-      y: this.props.y,
+      isHovering: false,
     };
-    this.onDrag = this.onDrag.bind(this);
+    this.onHover = this.onHover.bind(this);
+    this.offHover = this.offHover.bind(this);
   }
-  onDrag(e, ui) {
-    this.setState({ x: ui.x, y: ui.y });
+  onHover() {
+    this.setState({ isHovering: true });
+  }
+  offHover() {
+    this.setState({ isHovering: false });
+  }
+  renderPin() {
+    if (this.state.isHovering) {
+      return (
+        // <NavLink className="pin" to={`/posts/${this.props.post.id}`} onMouseOver={this.onHover} onMouseOut={this.offHover}>
+        //   <img src={this.props.post.cover_url} alt="Cover URL" />
+        //   <div className="pin-text">{this.props.post.tags}<br />{this.props.post.title}</div>
+        // </NavLink>
+        <NavLink className="pin" to={`/posts/${this.props.post.id}`} onMouseOver={this.onHover} onMouseOut={this.offHover}>
+          <div className="pin-text">
+            <h4>{this.props.post.title}<br />{this.props.post.tags}</h4>
+          </div>
+          <img className="img-responsive tint" src={this.props.post.cover_url} alt="Cover URL" />
+        </NavLink>
+      );
+    } else {
+      return (
+        <NavLink className="pin" to={`/posts/${this.props.post.id}`} onMouseOver={this.onHover} onMouseOut={this.offHover}>
+          <img src={this.props.post.cover_url} alt="Cover URL" />
+        </NavLink>
+      );
+    }
   }
   render() {
     return (
-      <Draggable
-        handle=".mover"
-        defaultPosition={{ x: 100, y: 100 }}
-        position={{ x: this.state.x, y: this.state.y }}
-        grid={[1, 1]}
-        onDrag={this.onDrag}
-      >
-        <NavLink to={`/posts/${this.props.post.id}`}>
-          <div className="pin mover">
-            <img src={this.props.post.cover_url} alt="Cover URL" />
-            <div>{this.props.post.title}</div>
-            <div>{this.props.post.tags}</div>
-          </div>
-        </NavLink>
-      </Draggable>
+      <div>
+        {this.renderPin()}
+      </div>
     );
   }
 }

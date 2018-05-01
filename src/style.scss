@@ -29,35 +29,82 @@ body, html {
   font-family: 'Do Hyeon', sans-serif;
   font-size: 50px;
 }
-.active {
-  // font-weight: bold;
+#big-container {
+  text-align: center;
+}
+#map-container {
+  display: inline-block;
+  margin: auto;
+  width: 80%;
 }
 #map {
-  background-image: url(./img/map.png);
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  min-height: 720px;
-  overflow: hidden;
+  // background-image: url(./img/map.png);
+  // -webkit-background-size: cover;
+  // -moz-background-size: cover;
+  // -o-background-size: cover;
+  // background-size: cover;
+  // min-height: 720px;
+  // overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
-.pin {
+// text over image adapted from https://codepen.io/rtro92/pen/VjzdPA
+.pin-text {
+  position: absolute;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+.pin-text:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.pin-text h4 {
+  display: inline-block;
+  font-size: 30px;
+  color: #FFF;
+}
+.pin{
+  position: relative;
+  display: inline-block;
+  margin: 20px;
+  max-width: 301px;
+  background-color: #000000;
+}
+.pin img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.tint {
+  opacity: 0.5;
+}
+#post-page {
   display: flex;
   flex-direction: column;
-  min-height: 180px;
-  min-width: 150px;
-  max-width: 500px;
-  word-break: break-all;
-  word-wrap: break-word;
-  position: absolute;
-  padding: 15px;
-  box-shadow: 1px 1px 5px #999;
+  align-items: center;
+  padding-left: 250px;
+  padding-right: 250px;
+}
+#post-page img {
+  max-width: 700px;
+}
+#post-title {
+  font-size: 30px;
+}
+#tags {
+  color: #839192;
+  padding-top: 10px;
 }
 #input-area {
   display: flex;
   flex-direction: column;
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 200px;
+  margin-right: 200px;
 }
 .input {
   font-size: 14px;
@@ -72,6 +119,10 @@ body, html {
   margin-bottom: 10px;
   resize: none;
 }
+.bottom-buttons {
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
 .button {
   border: 1px solid palevioletred;
   border-radius: 3px;
@@ -82,8 +133,22 @@ body, html {
   background-color: $buttoncolor;
   min-width: 70px;
 }
+.small {
+  width: 70px;
+}
+.margin-left {
+  margin-left: 10px;
+}
 .button:hover {
   background-color: $hovercolor;
   border-color: $hovercolor;
   cursor: pointer;
+}
+.divider {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  max-width: 1000px;
+  margin-top: 40px;
+  margin-bottom: 30px;
 }

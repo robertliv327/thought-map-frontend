@@ -46,10 +46,10 @@ class NewPost extends Component {
       <div id="input-area">
         <h3>Create a New Post</h3>
         <input className="input" placeholder="Title" onChange={this.onTitleChange} value={this.state.requestedTitle} />
+        <input className="input" placeholder="Image URL" onChange={this.onCoverURLChange} value={this.state.requestedCoverURL} />
         <Textarea className="input textarea" placeholder="Content" onChange={this.onContentChange} value={this.state.requestedContent} />
         <input className="input" placeholder="Tags" onChange={this.onTagsChange} value={this.state.requestedTags} />
-        <input className="input" placeholder="Cover URL" onChange={this.onCoverURLChange} value={this.state.requestedCoverURL} />
-        <button className="button" type="button" name="button" onClick={this.onSubmit}>Submit</button>
+        <button className="button small" type="button" name="button" onClick={this.onSubmit}>Submit</button>
       </div>
     );
   }
