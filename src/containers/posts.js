@@ -20,7 +20,7 @@ class Posts extends Component {
           <div id="map">
             {this.props.allPosts.map(post => (
               <Pin key={post.id} post={post} />
-          ))}
+            ))}
           </div>
         </div>
       </div>

@@ -8,10 +8,10 @@ const Nav = (props) => {
   return (
     <nav id="nav">
       <ul className="navlinks">
-        <li><NavLink exact to="/" className="navlink title">Photo Blog</NavLink></li>
+        <li><NavLink exact to="/" className="navlink title">My Animal Gif Page</NavLink></li>
         <li>
           <NavLink to="/posts/new" className="navlink">
-            <button className="button" type="button" name="button">Add an Image</button>
+            <button className="button" type="button" name="button">Add a Gif</button>
           </NavLink>
         </li>
       </ul>

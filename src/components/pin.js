@@ -19,10 +19,6 @@ class Pin extends Component {
   renderPin() {
     if (this.state.isHovering) {
       return (
-        // <NavLink className="pin" to={`/posts/${this.props.post.id}`} onMouseOver={this.onHover} onMouseOut={this.offHover}>
-        //   <img src={this.props.post.cover_url} alt="Cover URL" />
-        //   <div className="pin-text">{this.props.post.tags}<br />{this.props.post.title}</div>
-        // </NavLink>
         <NavLink className="pin" to={`/posts/${this.props.post.id}`} onMouseOver={this.onHover} onMouseOut={this.offHover}>
           <div className="pin-text">
             <h4>{this.props.post.title}<br />{this.props.post.tags}</h4>
