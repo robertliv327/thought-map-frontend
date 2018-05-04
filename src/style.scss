@@ -6,7 +6,7 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #E5E8E8;
+  background-color: #fff;
 }
 // #nav {
 //   padding: 30px;
@@ -30,28 +30,59 @@ body, html {
   font-family: 'Do Hyeon', sans-serif;
   font-size: 50px;
 }
-#big-container {
-  text-align: center;
-}
-#map-container {
-  display: inline-block;
-  margin: auto;
-  width: 80%;
-}
+// #big-container {
+//   text-align: center;
+// }
+// #map-container {
+//   display: inline-block;
+//   margin: auto;
+//   width: 80%;
+// }
 #map {
-  // background-image: url(./img/map.png);
-  // -webkit-background-size: cover;
-  // -moz-background-size: cover;
-  // -o-background-size: cover;
-  // background-size: cover;
-  // min-height: 720px;
-  // overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  background-image: url(./img/map.png);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 720px;
+  overflow: hidden;
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  // justify-content: flex-start;
+}
+.react-draggable {
+  max-width: 300px;
+}
+.small-pin {
+  position: absolute;
+  display: inline-block;
+  border-radius: 50px;
+  max-width: 50px;
+}
+.small-pin img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 50px;
+}
+.pin-mover {
+  cursor: pointer;
+  margin-right: 5px;
 }
 // text over image adapted from https://codepen.io/rtro92/pen/VjzdPA
+.pin{
+  position: absolute;
+  display: inline-block;
+  max-width: 300px;
+  background-color: #000000;
+  box-shadow: 1px 1px 5px #999;
+}
+.pin img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 .pin-text {
   position: absolute;
   height: 100%;
@@ -68,19 +99,6 @@ body, html {
   display: inline-block;
   font-size: 30px;
   color: #FFF;
-}
-.pin{
-  position: relative;
-  display: inline-block;
-  margin: 20px;
-  max-width: 301px;
-  background-color: #000000;
-  box-shadow: 1px 1px 5px #999;
-}
-.pin img{
-  display: block;
-  max-width: 100%;
-  height: auto;
 }
 .tint {
   opacity: 0.5;

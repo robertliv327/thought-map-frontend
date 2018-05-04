@@ -38,6 +38,8 @@ class NewPost extends Component {
       content: this.state.requestedContent,
       tags: this.state.requestedTags,
       cover_url: this.state.requestedCoverURL,
+      x: 30,
+      y: 0,
     };
     this.props.createPost(post, this.props.history);
   }

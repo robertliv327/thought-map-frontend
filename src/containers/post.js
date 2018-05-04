@@ -42,6 +42,8 @@ class Post extends Component {
       content: this.state.editingContent,
       tags: this.state.editingTags,
       cover_url: this.state.editingCoverURL,
+      x: this.props.post.x,
+      y: this.props.post.y,
     };
     this.setState({
       isEditing: false,

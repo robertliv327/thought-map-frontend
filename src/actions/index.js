@@ -31,7 +31,12 @@ export function createPost(post, history) {
   // that gets called by the middleware passing in dispatch to it as an argument
   return (dispatch) => {
     const fields = {
-      title: post.title, content: post.content, tags: post.tags, cover_url: post.cover_url,
+      title: post.title,
+      content: post.content,
+      tags: post.tags,
+      cover_url: post.cover_url,
+      x: post.x,
+      y: post.y,
     };
     axios.post(`${ROOT_URL}/posts${API_KEY}`, fields).then((response) => {
       history.push('/');
@@ -46,7 +51,12 @@ export function updatePost(id, post) {
   // that gets called by the middleware passing in dispatch to it as an argument
   return (dispatch) => {
     const fields = {
-      title: post.title, content: post.content, tags: post.tags, cover_url: post.cover_url,
+      title: post.title,
+      content: post.content,
+      tags: post.tags,
+      cover_url: post.cover_url,
+      x: post.x,
+      y: post.y,
     };
     axios.put(`${ROOT_URL}/posts/${id}${API_KEY}`, fields).then((response) => {
       dispatch({ type: ActionTypes.FETCH_POST, payload: response.data });
