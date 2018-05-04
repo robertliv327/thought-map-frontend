@@ -14,15 +14,10 @@ class Posts extends Component {
   }
   render() {
     return (
-      // need these containers to get things centered correctly...
-      <div id="big-container">
-        <div id="map-container">
-          <div id="map">
-            {this.props.allPosts.map(post => (
-              <Pin key={post.id} x={post.x} y={post.y} post={post} />
-            ))}
-          </div>
-        </div>
+      <div id="map">
+        {this.props.allPosts.map(post => (
+          <Pin key={post.id} x={post.x} y={post.y} post={post} />
+        ))}
       </div>
     );
   }

@@ -60,7 +60,7 @@ class Pin extends Component {
       );
     } else {
       return (
-        <div className="pin-and-mover">
+        <div>
           <i className="pin-mover fa fa-arrows-alt" />
           <NavLink className="small-pin" to={`/posts/${this.props.post.id}`} onMouseOver={this.onHover} onMouseOut={this.offHover}>
             <img src={this.props.post.cover_url} alt="Cover URL" />
