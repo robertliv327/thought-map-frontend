@@ -8,22 +8,22 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: '',
     };
-    this.onUsernameChange = this.onUsernameChange.bind(this);
+    this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  onUsernameChange(event) {
-    this.setState({ username: event.target.value });
+  onEmailChange(event) {
+    this.setState({ email: event.target.value });
   }
   onPasswordChange(event) {
     this.setState({ password: event.target.value });
   }
   onSubmit(event) {
     const user = {
-      email: this.state.username,
+      email: this.state.email,
       password: this.state.password,
     };
     this.props.signinUser(user, this.props.history);
@@ -32,7 +32,7 @@ class SignIn extends Component {
     return (
       <div id="input-area">
         <h3>Please Sign In:</h3>
-        <input className="input" placeholder="Username" onChange={this.onUsernameChange} value={this.state.username} />
+        <input className="input" placeholder="Email" onChange={this.onEmailChange} value={this.state.email} />
         <input className="input" placeholder="Password" onChange={this.onPasswordChange} value={this.state.password} />
         <button className="button small" type="button" name="button" onClick={this.onSubmit}>Sign In</button>
       </div>
