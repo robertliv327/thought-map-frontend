@@ -47,21 +47,42 @@ class Pin extends Component {
   }
   renderPin() {
     if (this.state.isHovering) {
+      if (this.props.authenticated) {
+        return (
+          <div>
+            <i className="pin-mover fa fa-arrows-alt" />
+            <NavLink className="pin" to={`/posts/${this.props.post.id}`} onMouseOver={this.onHover} onMouseOut={this.offHover}>
+              <div className="pin-text">
+                <h4>{this.props.post.title}<br />{this.props.post.tags}</h4>
+              </div>
+              <img className="img-responsive tint" src={this.props.post.cover_url} alt="Cover URL" />
+            </NavLink>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <NavLink className="pin" to={`/posts/${this.props.post.id}`} onMouseOver={this.onHover} onMouseOut={this.offHover}>
+              <div className="pin-text">
+                <h4>{this.props.post.title}<br />{this.props.post.tags}</h4>
+              </div>
+              <img className="img-responsive tint" src={this.props.post.cover_url} alt="Cover URL" />
+            </NavLink>
+          </div>
+        );
+      }
+    } else if (this.props.authenticated) {
       return (
         <div>
           <i className="pin-mover fa fa-arrows-alt" />
-          <NavLink className="pin" to={`/posts/${this.props.post.id}`} onMouseOver={this.onHover} onMouseOut={this.offHover}>
-            <div className="pin-text">
-              <h4>{this.props.post.title}<br />{this.props.post.tags}</h4>
-            </div>
-            <img className="img-responsive tint" src={this.props.post.cover_url} alt="Cover URL" />
+          <NavLink className="small-pin" to={`/posts/${this.props.post.id}`} onMouseOver={this.onHover} onMouseOut={this.offHover}>
+            <img src={this.props.post.cover_url} alt="Cover URL" />
           </NavLink>
         </div>
       );
     } else {
       return (
         <div>
-          <i className="pin-mover fa fa-arrows-alt" />
           <NavLink className="small-pin" to={`/posts/${this.props.post.id}`} onMouseOver={this.onHover} onMouseOut={this.offHover}>
             <img src={this.props.post.cover_url} alt="Cover URL" />
           </NavLink>
@@ -88,6 +109,12 @@ class Pin extends Component {
   }
 }
 
+const mapStateToProps = state => (
+  {
+    authenticated: state.auth.authenticated,
+  }
+);
+
 // react-redux glue -- outputs Container that knows how to call actions
 // new way to connect with react router 4
-export default withRouter(connect(null, { updatePost })(Pin));
+export default withRouter(connect(mapStateToProps, { updatePost })(Pin));

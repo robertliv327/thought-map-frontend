@@ -87,6 +87,7 @@ class Post extends Component {
           <img src={this.props.post.cover_url} alt="Cover URL" />
           <div dangerouslySetInnerHTML={{ __html: marked(this.props.post.content || '') }} />
           <div id="tags">{this.props.post.tags}</div>
+          <p>Author: {this.props.post.username}</p>
           <div className="bottom-buttons">
             <button className="button" type="button" name="button" onClick={this.onEditClick}>Edit Post</button>
             <button className="button margin-left" type="button" name="button" onClick={this.onDeleteClick}>Delete Post</button>
@@ -100,6 +101,7 @@ class Post extends Component {
           <img src={this.props.post.cover_url} alt="Cover URL" />
           <div dangerouslySetInnerHTML={{ __html: marked(this.props.post.content || '') }} />
           <div id="tags">{this.props.post.tags}</div>
+          <p>Author: {this.props.post.username}</p>
         </div>
       );
     }
