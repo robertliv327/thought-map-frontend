@@ -80,7 +80,7 @@ class Post extends Component {
           </div>
         </div>
       );
-    } else {
+    } else if (this.props.authenticated) {
       return (
         <div id="post-page">
           <p id="post-title">{this.props.post.title}</p>
@@ -91,6 +91,15 @@ class Post extends Component {
             <button className="button" type="button" name="button" onClick={this.onEditClick}>Edit Post</button>
             <button className="button margin-left" type="button" name="button" onClick={this.onDeleteClick}>Delete Post</button>
           </div>
+        </div>
+      );
+    } else {
+      return (
+        <div id="post-page">
+          <p id="post-title">{this.props.post.title}</p>
+          <img src={this.props.post.cover_url} alt="Cover URL" />
+          <div dangerouslySetInnerHTML={{ __html: marked(this.props.post.content || '') }} />
+          <div id="tags">{this.props.post.tags}</div>
         </div>
       );
     }
@@ -107,6 +116,7 @@ class Post extends Component {
 const mapStateToProps = state => (
   {
     post: state.posts.post,
+    authenticated: state.auth.authenticated,
   }
 );
 
