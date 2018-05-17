@@ -5,6 +5,7 @@ import Textarea from 'react-textarea-autosize';
 import marked from 'marked';
 
 import { fetchPost, updatePost, deletePost } from '../actions';
+import uploadImage from '../s3';
 
 class Post extends Component {
   constructor(props) {
@@ -14,15 +15,18 @@ class Post extends Component {
       editingTitle: '',
       editingContent: '',
       editingTags: '',
-      editingCoverURL: '',
+      // editingCoverURL: '',
+      preview: '',
+      file: {},
     };
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
     this.onTagsChange = this.onTagsChange.bind(this);
-    this.onCoverURLChange = this.onCoverURLChange.bind(this);
+    // this.onCoverURLChange = this.onCoverURLChange.bind(this);
     this.onEditClick = this.onEditClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
     this.onSaveClick = this.onSaveClick.bind(this);
+    this.onImageUpload = this.onImageUpload.bind(this);
   }
   componentDidMount() {
     this.props.fetchPost(this.props.match.params.postID);
@@ -33,22 +37,31 @@ class Post extends Component {
       editingTitle: this.props.post.title,
       editingContent: this.props.post.content,
       editingTags: this.props.post.tags,
-      editingCoverURL: this.props.post.cover_url,
+      // editingCoverURL: this.props.post.cover_url,
     });
   }
   onSaveClick(event) {
-    const post = {
-      title: this.state.editingTitle,
-      content: this.state.editingContent,
-      tags: this.state.editingTags,
-      cover_url: this.state.editingCoverURL,
-      x: this.props.post.x,
-      y: this.props.post.y,
-    };
-    this.setState({
-      isEditing: false,
-    });
-    this.props.updatePost(this.props.match.params.postID, post);
+    if (this.state.file) {
+      uploadImage(this.state.file).then((url) => {
+        // use url for content_url and
+        // either run your createPost actionCreator
+        // or your updatePost actionCreator
+        const post = {
+          title: this.state.editingTitle,
+          content: this.state.editingContent,
+          tags: this.state.editingTags,
+          cover_url: url,
+          x: this.props.post.x,
+          y: this.props.post.y,
+        };
+        this.setState({
+          isEditing: false,
+        });
+        this.props.updatePost(this.props.match.params.postID, post);
+      }).catch((error) => {
+        console.log('error with upload image');
+      });
+    }
   }
   onDeleteClick(event) {
     this.props.deletePost(this.props.match.params.postID, this.props.history);
@@ -62,8 +75,19 @@ class Post extends Component {
   onTagsChange(event) {
     this.setState({ editingTags: event.target.value });
   }
-  onCoverURLChange(event) {
-    this.setState({ editingCoverURL: event.target.value });
+  // onCoverURLChange(event) {
+  //   this.setState({ editingCoverURL: event.target.value });
+  // }
+  onImageUpload(event) {
+    const file = event.target.files[0];
+    // Handle null file
+    // Get url of the file and set it to the src of preview
+    if (file) {
+      this.setState({
+        preview: window.URL.createObjectURL(file),
+        file,
+      });
+    }
   }
   renderPost() {
     if (this.state.isEditing) {
@@ -71,7 +95,8 @@ class Post extends Component {
         <div id="input-area">
           <h3>Editing Post</h3>
           <input className="input" placeholder="Edit Title" onChange={this.onTitleChange} value={this.state.editingTitle} />
-          <input className="input" placeholder="Edit Image URL" onChange={this.onCoverURLChange} value={this.state.editingCoverURL} />
+          <img id="preview" alt="preview" src={this.state.preview} />
+          <input type="file" name="coverImage" onChange={this.onImageUpload} />
           <Textarea className="input textarea" placeholder="Edit Content" onChange={this.onContentChange} value={this.state.editingContent} />
           <input className="input" placeholder="Edit Tags" onChange={this.onTagsChange} value={this.state.editingTags} />
           <div>

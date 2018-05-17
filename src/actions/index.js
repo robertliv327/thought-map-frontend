@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// const ROOT_URL = 'http://localhost:9090/api';
-// const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
-const ROOT_URL = 'https://rlivaudais-lab5.herokuapp.com/api';
+// export const ROOT_URL = 'http://localhost:9090/api';
+// export const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
+export const ROOT_URL = 'https://rlivaudais-lab5.herokuapp.com/api';
 const API_KEY = '?key=r_livaudais';
 
 // keys for actiontypes
@@ -42,15 +42,7 @@ export function createPost(post, history) {
   // ActionCreator returns a function
   // that gets called by the middleware passing in dispatch to it as an argument
   return (dispatch) => {
-    const fields = {
-      title: post.title,
-      content: post.content,
-      tags: post.tags,
-      cover_url: post.cover_url,
-      x: post.x,
-      y: post.y,
-    };
-    axios.post(`${ROOT_URL}/posts${API_KEY}`, fields, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
+    axios.post(`${ROOT_URL}/posts${API_KEY}`, post, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
       history.push('/');
     }).catch((error) => {
       console.log('Error with axios call in createPost()');
