@@ -1,5 +1,21 @@
-# lab4
+# Thought Map Frontend
 
-For this lab, I made a "Thought Map" where a user can upload content and drag and drop it on the map. I'm pretty proud of the output and like how it is not just a blog. Everything went pretty smoothly with the lab, but adding in authentification was definitely a bit tricky.
+[Check out the app here](http://rlivaudais-cs52-blog.surge.sh)
 
-Extra credit: making it a drag and drop map interface instead of a blog.
+- This app is designed so that users can drag and drop "pins" (thoughts, memories, or just images) on a world map.
+- Pin creation is easy - just add a title, image, content, and tags. 
+- Once the pin has been added, you can drag and drop the pin anywhere on the map.
+- Clicking a pin expands the pin's contents and allows the user to edit or delete the pin.
+- Users sign up with a username, email, and password.
+
+### Technologies Used
+- Frontend
+ - React
+ - Redux
+ - Webpack
+ - AWS S3
+- Backend (see thought-map-backend repo)
+ - Express
+ - Mongodb
+ - Mongoose
+ - Passport authentication 
