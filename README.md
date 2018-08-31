@@ -10,12 +10,12 @@
 
 ### Technologies Used
 - Frontend
- - React
- - Redux
- - Webpack
- - AWS S3
+  - React
+  - Redux
+  - Webpack
+  - AWS S3
 - Backend (see thought-map-backend repo)
- - Express
- - Mongodb
- - Mongoose
- - Passport authentication 
+  - Express
+  - Mongodb
+  - Mongoose
+  - Passport authentication 
